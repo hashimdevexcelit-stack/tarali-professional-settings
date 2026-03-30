@@ -1,13 +1,10 @@
 import {
-  BriefcaseBusiness,
   CircleCheckBig,
   FilePenLine,
   FileSpreadsheet,
   Link as LinkIcon,
-  LogOut,
   MapPin,
   Pencil,
-  Settings,
   ShieldCheck,
   Trash2,
   Upload,
@@ -42,39 +39,6 @@ const professionalData: ProfessionalData = {
   passwordLastChanged: "February 10, 2026",
 };
 
-function SidebarButton({
-  active = false,
-  icon,
-  label,
-  badge,
-}: {
-  active?: boolean;
-  icon: React.ReactNode;
-  label: string;
-  badge?: number;
-}) {
-  return (
-    <button
-      className={[
-        "flex h-11 w-full items-center justify-between rounded-[14px] px-4 text-sm transition-colors",
-        active
-          ? "bg-[#101828] text-white"
-          : "bg-white text-[#101828] shadow-[0_10px_15px_0_rgba(0,0,0,0.05),0_4px_6px_0_rgba(0,0,0,0.03)] hover:bg-[#f8fafc]",
-      ].join(" ")}
-    >
-      <span className="flex items-center gap-3">
-        <span className="size-5">{icon}</span>
-        <span>{label}</span>
-      </span>
-      {badge ? (
-        <span className="flex size-[22px] items-center justify-center rounded-full bg-[#008dd5] text-[10px] text-white">
-          {badge}
-        </span>
-      ) : null}
-    </button>
-  );
-}
-
 function Panel({
   title,
   action,
@@ -107,71 +71,13 @@ function Panel({
 export default function App() {
   return (
     <div className="min-h-screen bg-[#f9fafb] text-[#101828]">
-      <div className="mx-auto flex min-h-screen max-w-[1440px] flex-col overflow-hidden rounded-none bg-white md:rounded-[24px] md:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.12)] lg:flex-row">
-        <aside className="flex w-full flex-col border-b border-[#e5e7eb] bg-white lg:min-h-screen lg:w-[280px] lg:border-b-0 lg:border-r">
-          <div className="border-b border-[#e5e7eb] px-6 py-6">
-            <div className="flex items-center gap-3">
-              <div className="flex size-12 items-center justify-center rounded-xl bg-[#f8fafc]">
-                <BriefcaseBusiness className="size-6 text-[#101828]" />
-              </div>
-              <div className="text-left">
-                <p className="font-['Libre_Baskerville',serif] text-[20px] font-bold tracking-[0.04em]">
-                  TARALI
-                </p>
-                <p className="text-sm tracking-[0.04em] text-[#4a5565]">Professional Portal</p>
-              </div>
-            </div>
-          </div>
+      <main className="mx-auto max-w-[1040px] px-4 py-8 md:px-6 lg:px-8 lg:py-12">
+        <header className="rounded-[24px] border border-[#e5e7eb] bg-white px-6 py-6 shadow-[0_10px_15px_-3px_rgba(0,0,0,0.08),0_4px_6px_-4px_rgba(0,0,0,0.08)] md:px-8">
+          <h1 className="text-[28px] font-bold leading-9 text-[#101828]">Profile Settings</h1>
+          <p className="mt-2 text-base text-[#4a5565]">Edit your profile details here.</p>
+        </header>
 
-          <div className="flex flex-col gap-2 px-4 py-4">
-            <SidebarButton
-              icon={<BriefcaseBusiness className="size-5" />}
-              label="Incoming Leads"
-              badge={3}
-            />
-            <SidebarButton
-              active
-              icon={<Settings className="size-5" />}
-              label="Profile Settings"
-            />
-          </div>
-
-          <div className="mt-auto border-t border-[#e5e7eb] p-4">
-            <div className="rounded-[14px] border border-[#dbeafe] bg-[#ebf6fc] p-4">
-              <div className="mb-4 flex items-center gap-2 text-sm font-medium text-[#101828]">
-                <Upload className="size-5 text-[#008dd5]" />
-                <span>This Month</span>
-              </div>
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <p className="text-3xl font-bold leading-none text-[#101828]">
-                    {professionalData.leadsThisMonth}
-                  </p>
-                  <p className="mt-1 text-xs text-[#4a5565]">New Leads</p>
-                </div>
-                <div>
-                  <p className="text-3xl font-bold leading-none text-[#101828]">
-                    {professionalData.acceptedThisMonth}
-                  </p>
-                  <p className="mt-1 text-xs text-[#4a5565]">Accepted</p>
-                </div>
-              </div>
-            </div>
-
-            <button className="mt-4 flex items-center gap-2 px-3 py-2 text-sm text-[#101828]">
-              <LogOut className="size-4" />
-              Logout
-            </button>
-          </div>
-        </aside>
-
-        <main className="min-w-0 flex-1 bg-white">
-          <header className="border-b border-[#e5e7eb] px-6 py-6 md:px-8">
-            <h1 className="text-[28px] font-bold leading-9 text-[#101828]">Profile Settings</h1>
-            <p className="mt-2 text-base text-[#4a5565]">Edit your profile details here.</p>
-          </header>
-
-          <div className="space-y-6 p-6 md:p-8">
+        <div className="mt-6 space-y-6">
             <section className="flex flex-col gap-6 xl:flex-row xl:items-start xl:justify-between">
               <div className="flex items-start gap-4">
                 <div className="relative mt-1">
@@ -359,9 +265,8 @@ export default function App() {
                 </button>
               </div>
             </section>
-          </div>
-        </main>
-      </div>
+        </div>
+      </main>
     </div>
   );
 }
